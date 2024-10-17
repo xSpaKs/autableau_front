@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Allez au tableau</title>
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css"
+        />
+        <script src="app.js" defer></script>
+
+        <style>
+            .class_form {
+                display: flex;
+            }
+
+            .class_none {
+                display: none;
+            }
+
+            .class_error {
+                display: none;
+                color: red;
+            }
+
+            .student_form {
+                display: none;
+            }
+
+            .student_none {
+                display: none;
+            }
+
+            .student_error {
+                display: none;
+                color: red;
+            }
+
+            .student_class_error {
+                display: none;
+                color: red;
+            }
+
+            .soutenance {
+                display: flex;
+            }
+
+            li {
+                display: flex;
+                gap: 10px;
+            }
+
+            li > button {
+                height: 40px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Au tableau</h1>
+        <div class="classrooms">
+            <h2>Liste des classes</h2>
+            <p class="class_none">Vous n'avez actuellement aucune classe</p>
+            <form class="class_form" action="post">
+                <input
+                    type="text"
+                    name="class_name"
+                    placeholder="Nom de la classe"
+                />
+                <input type="submit" value="Créer" />
+            </form>
+            <p class="class_error">Veuillez ajouter un nom de classe</p>
+            <ul class="classes_list"></ul>
+        </div>
+
+        <div class="students">
+            <h2>Liste des étudiants</h2>
+            <select class="select_class">
+                <option value="default">Choisissez une classe</option>
+            </select>
+            <p class="student_none">
+                Il n'y a actuellement aucun étudiant dans cette classe
+            </p>
+            <form class="student_form" action="post">
+                <input
+                    type="text"
+                    name="student_name"
+                    placeholder="Nom de l'étudiant"
+                />
+                <input type="submit" value="Ajouter" />
+            </form>
+            <p class="student_class_error">
+                Veuillez sélectionner un nom de classe valide
+            </p>
+            <p class="student_error">Veuillez ajouter le nom de l'étudiant</p>
+            <ul class="students_list"></ul>
+        </div>
+
+        <div class="gestion_buttons">
+            <button class="classes_button">Gestion des classes</button>
+            <button class="students_button">Gestion des étudiants</button>
+        </div>
+
+        <h2>Créer une soutenance</h2>
+        <div class="soutenance">
+            <select class="select_class_soutenance">
+                <option value="default">Choisissez une classe</option>
+            </select>
+            <input type="text" placeholder="Nom de la soutenance..." />
+            <button>Créer</button>
+        </div>
+    </body>
+</html>
