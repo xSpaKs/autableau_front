@@ -33,7 +33,6 @@
             }
 
             .student_error {
-                display: none;
                 color: red;
             }
 
@@ -42,25 +41,58 @@
                 color: red;
             }
 
-            .soutenance {
+            .create_soutenance > div {
                 display: flex;
+            }
+
+            .soutenance_form {
+                display: flex;
+            }
+
+            .soutenance_class_error,
+            .soutenance_name_error,
+            .soutenance_already_error {
+                color: red;
+                display: none;
+            }
+
+            .run_soutenance_stats {
+                display: flex;
+                gap: 20px;
             }
 
             li {
                 display: flex;
-                gap: 10px;
+                gap: 5px;
             }
 
-            li > button {
-                height: 40px;
+            li + p {
+                margin: 0px 0px 20px 0px;
+                color: red;
+                display: none;
+            }
+
+            .gestion_buttons {
+                padding-top: 40px;
+            }
+
+            .gestion_buttons > button:hover {
+                background-color: white;
+            }
+
+            .gestion_buttons > button {
+                background-color: lightgray;
+                color: black;
+                transition: 0.3s;
             }
         </style>
     </head>
     <body>
-        <h1>Au tableau</h1>
+        <h1>Au tableau !</h1>
         <div class="classrooms">
             <h2>Liste des classes</h2>
             <p class="class_none">Vous n'avez actuellement aucune classe</p>
+            <ul class="classes_list"></ul>
             <form class="class_form" action="post">
                 <input
                     type="text"
@@ -69,8 +101,7 @@
                 />
                 <input type="submit" value="Créer" />
             </form>
-            <p class="class_error">Veuillez ajouter un nom de classe</p>
-            <ul class="classes_list"></ul>
+            <p class="class_error"></p>
         </div>
 
         <div class="students">
@@ -81,19 +112,19 @@
             <p class="student_none">
                 Il n'y a actuellement aucun étudiant dans cette classe
             </p>
+            <ul class="students_list"></ul>
             <form class="student_form" action="post">
                 <input
                     type="text"
                     name="student_name"
                     placeholder="Nom de l'étudiant"
                 />
-                <input type="submit" value="Ajouter" />
+                <input type="submit" value="Ajouter à la classe" />
             </form>
             <p class="student_class_error">
                 Veuillez sélectionner un nom de classe valide
             </p>
-            <p class="student_error">Veuillez ajouter le nom de l'étudiant</p>
-            <ul class="students_list"></ul>
+            <p class="student_error"></p>
         </div>
 
         <div class="gestion_buttons">
@@ -101,13 +132,39 @@
             <button class="students_button">Gestion des étudiants</button>
         </div>
 
-        <h2>Créer une soutenance</h2>
-        <div class="soutenance">
-            <select class="select_class_soutenance">
-                <option value="default">Choisissez une classe</option>
-            </select>
-            <input type="text" placeholder="Nom de la soutenance..." />
-            <button>Créer</button>
+        <div class="create_soutenance">
+            <h2>Créer une soutenance</h2>
+            <div>
+                <select class="select_class_soutenance">
+                    <option value="default">Choisissez une classe</option>
+                </select>
+                <form class="soutenance_form">
+                    <input
+                        type="text"
+                        placeholder="Nom de la soutenance..."
+                        name="name"
+                    />
+                    <input type="submit" value="Créer" />
+                </form>
+            </div>
+            <p class="soutenance_already_error">
+                Une soutenance est déjà en cours
+            </p>
+            <p class="soutenance_class_error">
+                Veuillez sélectionner une classe valide
+            </p>
+            <p class="soutenance_name_error">
+                Veuillez choisir un nom de soutenance valide
+            </p>
+        </div>
+        <div class="run_soutenance">
+            <h2 class="run_soutenance_title"></h2>
+            <div class="run_soutenance_stats">
+                <p class="run_soutenance_total"></p>
+                <p class="run_soutenance_done"></p>
+                <p class="run_soutenance_left"></p>
+            </div>
+            <p class="run_soutenance_current"></p>
         </div>
     </body>
 </html>
