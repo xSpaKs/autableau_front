@@ -421,9 +421,12 @@ soutenance_form.addEventListener("submit", async (e) => {
     const soutenance_name = soutenance_form.name.value;
     let hasError = false;
 
-    if (JSON.parse(localStorage.getItem("students")).length > 0) {
-        soutenance_already_error.style.display = "block";
-        return;
+    let soutenance = JSON.parse(localStorage.getItem("student"));
+    if (soutenance != null) {
+        if (soutenance.length > 0) {
+            soutenance_already_error.style.display = "block";
+            return;
+        }
     }
 
     if (!Number.isInteger(parseInt(classroom_id, 10))) {
@@ -446,8 +449,6 @@ soutenance_form.addEventListener("submit", async (e) => {
         localStorage.setItem("name", soutenance_name);
         localStorage.setItem("students", JSON.stringify(students));
         runSoutenance();
-    } else {
-        console.log("he");
     }
 });
 
@@ -472,7 +473,11 @@ class_select.addEventListener("change", async function () {
     let classrooms = await getClassrooms();
     displayClassrooms(classrooms);
 
-    if (JSON.parse(localStorage.getItem("students")).length > 0) {
-        runSoutenance();
+    let soutenance = JSON.parse(localStorage.getItem("student"));
+
+    if (soutenance != null) {
+        if (JSON.parse(localStorage.getItem("students")).length > 0) {
+            runSoutenance();
+        }
     }
 })();
